@@ -34,7 +34,7 @@ Will create **app/parameters/[model_name]_parameters.rb**.
 permitted_params(options={})
 ```
 
- #####Options
+#####Options
 
  * **options**          - Hash with two valid keys **:class** and **:locals**.
  * **options[:class]**  - Symbol value with the name of the Parameters class you want to use.
