@@ -1,3 +1,5 @@
+[![Code Climate](https://codeclimate.com/github/edelpero/action_parameter.png)](https://codeclimate.com/github/edelpero/action_parameter)
+
 ActionParameter
 ===============
 
