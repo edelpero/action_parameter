@@ -34,7 +34,7 @@ Will create **app/parameters/[model_name]_parameters.rb**.
 permitted_params(options={})
 ```
 
-#####Options
+#####Options Hash
 
  * **options**          - Hash with two valid keys **:class** and **:locals**.
  * **options[:class]**  - Symbol value with the name of the Parameters class you want to use.
@@ -93,7 +93,8 @@ end
 If you want to create new helper methods for you parameters class, just pass a hash using **:locals**. Let say you want to make **@current_user** available for the UserParameter's class, then you'll need to use the **:locals** option to tell the UserParameters class to create a new helper that returns **@current_user**.
 
 ```ruby
-permitted_params(class: :user, locals: { current_user: @current_user, another_helper: @value })
+permitted_params(class: :user, locals: { current_user:   @current_user,
+                                         another_helper: @value })
 ```
 This will create **current_user** and **another_helper** methods and they will be available in UserParameters class.
 
@@ -103,7 +104,9 @@ This will create **current_user** and **another_helper** methods and they will b
 # app/controllers/people_controllers.rb
 class UsersController < ActionController::Base
   def create
-    Person.create(permitted_params(locals: { current_user: @current_user }).sign_up) # This will call to UserParameters' sign_up method and will also create a helper method named 'current_user' which will return @current_user
+    Person.create(permitted_params(locals: { current_user: @current_user }).sign_up)
+    # This will call to UserParameters' sign_up method and will also create a
+    # helper method named 'current_user' which will return @current_user
   end
 end
 ```
