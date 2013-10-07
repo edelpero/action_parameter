@@ -39,9 +39,9 @@ module ActionParameter
       #
       #     permitted_params_class()                  # called from PeopleController
       #     # => PersonParameters
-      def permitted_params_class(options = {})
-        class_name                = options[:class].to_s || params[:controller].to_s.singularize
-        formatted_class_name      = class_name.camelcase
+      def permitted_params_class(class_name = nil)
+        class_name                = class_name || params[:controller].to_s.singularize
+        formatted_class_name      = class_name.to_s.camelcase
         @permitted_params_class ||= "#{formatted_class_name}Parameters".constantize
       end
 
