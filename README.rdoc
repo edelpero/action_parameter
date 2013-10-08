@@ -1,3 +1,4 @@
+{<img src="https://travis-ci.org/edelpero/action_parameter.png?branch=master" alt="Build Status" />}[https://travis-ci.org/edelpero/action_parameter]
 {<img src="https://codeclimate.com/github/edelpero/action_parameter.png" />}[https://codeclimate.com/github/edelpero/action_parameter]
 
 ActionParameter
