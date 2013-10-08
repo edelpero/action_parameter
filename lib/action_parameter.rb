@@ -1,4 +1,5 @@
-require 'rails'
+require 'action_pack'
+require 'active_support'
 require 'action_parameter/railtie' if defined?(Rails)
 
 module ActionParameter
