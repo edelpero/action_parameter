@@ -6,6 +6,45 @@ ActionParameter
 
 ActionParameter helps you move all your parameter's logic into it's own class. This way you'll keep your controllers dry and they would be easier to test.
 
+Before
+------
+
+```ruby
+# app/controllers/users_controllers.rb
+class UsersController < ActionController::Base
+  def create
+    User.create(user_params)
+  end
+
+  private
+    def user_params
+      params.require(:user).permit(:name, :age)
+    end
+end
+```
+
+After
+-----
+
+```ruby
+# app/controllers/users_controllers.rb
+class UsersController < ActionController::Base
+  def create
+    # It automatically deduces which Parameters class from Controller's name
+    User.create(permitted_params.permit)
+  end
+end
+```
+
+```ruby
+# app/parameters/user_parameters.rb
+class UserParameter < ActionParameter::Base
+  def permit
+    params.require(:user).permit(:name, :age)
+  end
+end
+```
+
 Install
 -------
 
@@ -102,10 +141,10 @@ This will create **current_user** and **another_helper** methods and they will b
 #####Example
 
 ```ruby
-# app/controllers/people_controllers.rb
+# app/controllers/users_controllers.rb
 class UsersController < ActionController::Base
   def create
-    Person.create(permitted_params(locals: { current_user: @current_user }).sign_up) 
+    Person.create(permitted_params(locals: { current_user: @current_user }).sign_up)
     # This will call to UserParameters' sign_up method and will also create a
     # helper method named 'current_user' which will return @current_user
   end
