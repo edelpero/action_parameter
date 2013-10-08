@@ -8,7 +8,7 @@ ActionParameter helps you move all your parameter's logic into it's own class. T
 Install
 -------
 
-ActionParameter works with Rails 3.0 onwards and Ruby 1.9. You can add it to your Gemfile with:
+ActionParameter works with Rails 3.0 onwards and Ruby 1.9.3 onwards. You can add it to your Gemfile with:
 
 ```ruby
 gem 'action_parameter'
