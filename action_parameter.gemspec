@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.summary       = "Single Responsability Principle for Rails Controller's Parameters."
   s.email         = "edelpero@gmail.com"
   s.homepage      = "https://github.com/edelpero/action_parameter"
-  s.description   = "Single Responsability Principle for Rails Controller's Parameters."
+  s.description   = "ActionParameter helps you move all your parameter's logic into it's own class. This way you'll keep your controllers dry and they would be easier to test."
   s.authors       = ['Ezequiel Delpero']
   s.license       = "MIT"
 
