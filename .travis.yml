@@ -1,0 +1,10 @@
+language: ruby
+script: "bundle exec rake test"
+rvm:
+  - 1.9.2
+  - 1.9.3
+  - 2.0.0
+gemfile:
+  - Gemfile
+notifications:
+  email: false
