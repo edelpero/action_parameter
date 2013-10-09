@@ -1,4 +1,6 @@
+[![Gem Version](https://badge.fury.io/rb/action_parameter.png)](http://badge.fury.io/rb/action_parameter)
 [![Build Status](https://travis-ci.org/edelpero/action_parameter.png?branch=master)](https://travis-ci.org/edelpero/action_parameter)
+[![Coverage Status](https://coveralls.io/repos/edelpero/action_parameter/badge.png)](https://coveralls.io/r/edelpero/action_parameter)
 [![Code Climate](https://codeclimate.com/github/edelpero/action_parameter.png)](https://codeclimate.com/github/edelpero/action_parameter)
 
 ActionParameter
