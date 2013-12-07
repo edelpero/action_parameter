@@ -14,7 +14,7 @@ class UsersController < ApplicationController
   end
 
   def permitted_params_with_locals
-    permitted_params(locals: { current_user: 'user'})
+    permitted_params.locals(current_user: 'user')
     render nothing: true
   end
 
