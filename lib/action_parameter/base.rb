@@ -39,7 +39,7 @@ module ActionParameter
         create_methods(locals)
       end
 
-      # create_methods: Creates instance methods using locals hash's keys and values, params[:controller] and params[:action].
+      # create_methods: Creates instance methods using locals hash's keys and values.
       #
       # == Options
       #
@@ -49,12 +49,10 @@ module ActionParameter
       #
       #     create_methods(current_user: @user, another_key: @another_variable)
       #
-      #   Will create 'current_user', 'another_key', 'controller_name' and 'action_name' instance methods.
+      #   Will create 'current_user' and 'another_key' instance methods.
       #   This methods will be aviable only in the current parameter class where create_method was called.
       #   'current_user'    will return @user.
       #   'another_key'     will return @another_variable
-      #   'controller_name' will return the controller instance's name
-      #   'action_name'     will return the controller action instance's name
       def create_methods(locals = {})
         locals = {} unless locals
 
