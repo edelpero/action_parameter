@@ -64,7 +64,7 @@ Usage
 ####Generator
 
 ```ruby
-rails generate parameter [MODEL_NAME]
+rails generate parameters [MODEL_NAME]
 ```
 Will create **app/parameters/[model_name]_parameters.rb**.
 
@@ -78,9 +78,8 @@ permitted_params(options={})
 
 #####Options Hash
 
- * **options**          - Hash with two valid keys **:class** and **:locals**.
- * **options[:class]**  - Symbol value with the name of the Parameters class you want to use.
- * **options[:locals]** - Hash used to create helper methods available for the ActionParameter instance.
+ * **options**         - Hash with one valid key: **:class**.
+ * **options[:class]** - Symbol value with the name of the Parameters class you want to use.
 
 #####Example 1
 
@@ -122,7 +121,7 @@ class UserParameters < ActionParameter::Base
 end
 ```
 
-####Parameter Helpers
+####Parameter Class Helpers
 
 #####Default Helpers
 
@@ -132,35 +131,33 @@ end
 
 #####Creating New Helpers
 
-If you want to create new helper methods for you parameters class, just pass a hash using **:locals**. Let say you want to make **@current_user** available for the UserParameter's class, then you'll need to use the **:locals** option to tell the UserParameters class to create a new helper that returns **@current_user**.
+If you want to create new helper methods for you parameters class, just call **:locals** over **permitted_params**. Let say you want to make **@current_user** available for the UserParameter's class, then you'll need to use the **:locals** method to tell the UserParameters class to create a new helper that returns **@current_user**.
 
 ```ruby
-permitted_params(class: :user, locals: { current_user:   @current_user,
-                                         another_helper: @value })
+permitted_params(class: :user).locals( current_user:   @current_user,
+                                       another_helper: @value )
 ```
 This will create **current_user** and **another_helper** methods and they will be available in UserParameters class.
 
 #####Example
 
 ```ruby
-# app/controllers/users_controllers.rb
+# app/controllers/people_controllers.rb
 class UsersController < ActionController::Base
   def create
-    Person.create(permitted_params(locals: { current_user: @current_user }).sign_up)
-    # This will call to UserParameters' sign_up method and will also create a
-    # helper method named 'current_user' which will return @current_user
+    User.create(permitted_params.locals(current_user: @current_user).permit) # This will call to PersonParameters' permit method
   end
 end
 ```
 
 ```ruby
-# app/parameters/user_parameters.rb
+# app/parameters/person_parameters.rb
 class UserParameters < ActionParameter::Base
-  def sign_up
-    if current_user # Method created using :locals option
-      params.permit!
+  def permit
+    if user.admin?
+        params.require(:person).permit(:name, :age, :admin)
     else
-      params.require(:person).permit(:name, :age)
+        params.require(:person).permit(:name, :age)
     end
   end
 end
