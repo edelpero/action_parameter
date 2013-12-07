@@ -3,18 +3,41 @@ module ActionParameter
 
     attr_accessor :params
 
-    # initialize: Initialize parameter class.
+    # initialize: Initialize parameter class and creates controller_name and action_name helpers.
     #
     # == Options
     #
     # * <tt>params</tt> - The ActionController::Parameters instance from the controller who initialize this.
-    # * <tt>locals</tt> - Hash used to create helper methods available for the ActionParameter instance.
-    def initialize(params, locals = {})
+    def initialize(params)
       @params = params
+      create_base_helpers
+    end
+
+    # locals: Creates helper methods for the ActionParameter instace.
+    #
+    # == Options
+    #
+    # * <tt>locals</tt> - Hash used to create helper methods available for the ActionParameter instance.
+    #
+    # == Examples
+    #
+    # * locals(new_method: @value, another_method: @other_value)
+    #   # => 'ActionParameter instace'
+    #
+    # Returns the ActionParameter instace.
+    def locals(locals = {})
       create_methods(locals)
+      self
     end
 
     protected
+
+      # create_base_helpers: Creates controller_name and action_name helper methods, every time an ActionParameter instace is created.
+      def create_base_helpers
+        locals = { controller_name: params[:controller],
+                   action_name:     params[:action] }
+        create_methods(locals)
+      end
 
       # create_methods: Creates instance methods using locals hash's keys and values, params[:controller] and params[:action].
       #
@@ -34,9 +57,6 @@ module ActionParameter
       #   'action_name'     will return the controller action instance's name
       def create_methods(locals = {})
         locals = {} unless locals
-
-        locals.merge!(controller_name: params[:controller],
-                      action_name:     params[:action])
 
         klass = class << self; self; end
 

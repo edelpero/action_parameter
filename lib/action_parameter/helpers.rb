@@ -20,7 +20,7 @@ module ActionParameter
       #   available on the CustomerParameters instace.
       def permitted_params(options = {})
         parameter_class     = permitted_params_class(options[:class])
-        @permitted_params ||= parameter_class.new(params, options[:locals])
+        @permitted_params ||= parameter_class.new(params)
       end
 
       # permitted_params_class: Returns a Parameters class.
