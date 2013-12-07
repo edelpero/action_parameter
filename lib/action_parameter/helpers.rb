@@ -14,7 +14,7 @@ module ActionParameter
       # == Examples
       #
       #     permitted_params(class: customer, locals: { current_user: @user }) # called from UsersController
-      #   
+      #
       #   This will create an instance of CustomerParameters and also will make
       #   'current_user', 'params', 'controller_name' and 'action_name' helper methods
       #   available on the CustomerParameters instace.
@@ -32,7 +32,7 @@ module ActionParameter
       # == Examples
       #
       #     permitted_params_class(class: :customer)  # called from PeopleController
-      #     # => CustomerParameters 
+      #     # => CustomerParameters
       #
       #     permitted_params_class(class: :customers) # called from PeopleController
       #     # => CustomersParameters
