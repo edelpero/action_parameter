@@ -2,6 +2,7 @@
 [![Build Status](https://travis-ci.org/edelpero/action_parameter.png?branch=master)](https://travis-ci.org/edelpero/action_parameter)
 [![Coverage Status](https://coveralls.io/repos/edelpero/action_parameter/badge.png)](https://coveralls.io/r/edelpero/action_parameter)
 [![Code Climate](https://codeclimate.com/github/edelpero/action_parameter.png)](https://codeclimate.com/github/edelpero/action_parameter)
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/edelpero/action_parameter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 ActionParameter
 ===============
@@ -142,7 +143,7 @@ This will create **current_user** and **another_helper** methods and they will b
 #####Example
 
 ```ruby
-# app/controllers/people_controllers.rb
+# app/controllers/users_controllers.rb
 class UsersController < ActionController::Base
   def create
     User.create(permitted_params.locals(current_user: @current_user).permit) # This will call to PersonParameters' permit method
@@ -151,7 +152,7 @@ end
 ```
 
 ```ruby
-# app/parameters/person_parameters.rb
+# app/parameters/user_parameters.rb
 class UserParameters < ActionParameter::Base
   def permit
     if user.admin?
@@ -162,6 +163,4 @@ class UserParameters < ActionParameter::Base
   end
 end
 ```
-
-[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/edelpero/action_parameter/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 

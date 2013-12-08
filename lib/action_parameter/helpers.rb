@@ -34,7 +34,7 @@ module ActionParameter
       #     # => CustomerParameters
       #
       #     permitted_params_class(:customers) # called from PeopleController
-      #     # => CustomerParameters
+      #     # => CustomersParameters
       #
       #     permitted_params_class()           # called from PeopleController
       #     # => PersonParameters
