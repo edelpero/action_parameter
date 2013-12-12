@@ -146,7 +146,7 @@ This will create **current_user** and **another_helper** methods and they will b
 # app/controllers/users_controllers.rb
 class UsersController < ActionController::Base
   def create
-    User.create(permitted_params.locals(current_user: @current_user).permit) # This will call to PersonParameters' permit method
+    User.create(permitted_params.locals(user: @current_user).permit) # This will call to UserParameters' permit method
   end
 end
 ```
