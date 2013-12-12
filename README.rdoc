@@ -132,13 +132,13 @@ end
 
 #####Creating New Helpers
 
-If you want to create new helper methods for you parameters class, just call **:locals** over **permitted_params**. Let say you want to make **@current_user** available for the UserParameter's class, then you'll need to use the **:locals** method to tell the UserParameters class to create a new helper that returns **@current_user**.
+If you want to create new helper methods for your parameters class, just call **locals** method over **permitted_params**. Let say you want to make **@current_user** available for the UserParameter's class under the **user** method, then you'll need to use the **locals** method to tell the UserParameters class to create a new helper that returns **@current_user**.
 
 ```ruby
-permitted_params(class: :user).locals( current_user:   @current_user,
+permitted_params(class: :user).locals( user:           @current_user,
                                        another_helper: @value )
 ```
-This will create **current_user** and **another_helper** methods and they will be available in UserParameters class.
+This will create **user** and **another_helper** methods and they will be available in UserParameters class.
 
 #####Example
 
