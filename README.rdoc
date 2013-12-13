@@ -41,7 +41,7 @@ end
 
 ```ruby
 # app/parameters/user_parameters.rb
-class UserParameter < ActionParameter::Base
+class UserParameters < ActionParameter::Base
   def permit
     params.require(:user).permit(:name, :age)
   end
