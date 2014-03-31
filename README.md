@@ -9,6 +9,8 @@ ActionParameter
 
 ActionParameter helps you move all your parameter's logic into it's own class. This way you'll keep your controllers dry and they would be easier to test.
 
+Do you want to learn more about the problem this gem solve? [Read my post here.]( http://edelpero.github.io/blog/2013/10/19/strong-parameters-the-right-way/)
+
 Before
 ------
 
@@ -162,5 +164,43 @@ class UserParameters < ActionParameter::Base
     end
   end
 end
+```
+
+RSpec
+-----
+
+This example shows how to test using RSpec. 
+
+Theses tests require your **application.rb** configured to **config.action_controller.action_on_unpermitted_parameters = :raise**.
+
+```ruby
+# spec/parameters/user_parameters_spec.rb
+require "spec_helper"
+
+describe UserParameters do
+  describe ".permit" do
+    describe "when permitted parameters" do
+      it "returns the cleaned parameters" do
+        user_params = { first_name: "John", last_name: "Doe" }
+        params = ActionController::Parameters.new(user: user_params)
+
+        permitted_params = UserParameters.new(params).permit
+
+        expect(permitted_params).to eq user_params.with_indifferent_access
+      end
+    end
+
+    describe "when unpermitted parameters" do
+      it "raises error" do
+        user_params = { foo: "bar" }
+        params = ActionController::Parameters.new(user: user_params)
+
+        expect{ UserParameters.new(params).permit }.
+          to raise_error(ActionController::UnpermittedParameters)
+      end
+    end
+  end
+end
+
 ```
 
