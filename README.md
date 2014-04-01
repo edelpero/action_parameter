@@ -9,8 +9,6 @@ ActionParameter
 
 ActionParameter helps you move all your parameter's logic into it's own class. This way you'll keep your controllers dry and they would be easier to test.
 
-Do you want to learn more about the problem this gem solve? [Read my post here.]( http://edelpero.github.io/blog/2013/10/19/strong-parameters-the-right-way/)
-
 Before
 ------
 
