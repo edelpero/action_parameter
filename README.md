@@ -164,3 +164,41 @@ class UserParameters < ActionParameter::Base
 end
 ```
 
+RSpec
+-----
+
+This example shows how to test using RSpec. 
+
+Theses tests require your **application.rb** configured to **config.action_controller.action_on_unpermitted_parameters = :raise**.
+
+```ruby
+# spec/parameters/user_parameters_spec.rb
+require "spec_helper"
+
+describe UserParameters do
+  describe ".permit" do
+    describe "when permitted parameters" do
+      it "returns the cleaned parameters" do
+        user_params = { first_name: "John", last_name: "Doe" }
+        params = ActionController::Parameters.new(user: user_params)
+
+        permitted_params = UserParameters.new(params).permit
+
+        expect(permitted_params).to eq user_params.with_indifferent_access
+      end
+    end
+
+    describe "when unpermitted parameters" do
+      it "raises error" do
+        user_params = { foo: "bar" }
+        params = ActionController::Parameters.new(user: user_params)
+
+        expect{ UserParameters.new(params).permit }.
+          to raise_error(ActionController::UnpermittedParameters)
+      end
+    end
+  end
+end
+
+```
+
