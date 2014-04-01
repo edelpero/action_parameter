@@ -169,7 +169,7 @@ RSpec
 
 This example shows how to test using RSpec. 
 
-Theses tests require your **application.rb** configured to **config.action_controller.action_on_unpermitted_parameters = :raise**.
+Theses tests require your **test.rb** configured to **config.action_controller.action_on_unpermitted_parameters = :raise**.
 
 ```ruby
 # spec/parameters/user_parameters_spec.rb
