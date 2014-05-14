@@ -1,3 +1,8 @@
+### 0.0.3
+
+* bug fixing
+  * Adds class namespacing support when guessing parameter class. Thanks to @poporul.
+
 ### 0.0.2
 
 * enhancements
