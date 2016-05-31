@@ -7,7 +7,7 @@
 ActionParameter
 ===============
 
-ActionParameter helps you move all your parameter's logic into it's own class. This way you'll keep your controllers dry and they would be easier to test.
+ ActionParameter helps you move all your parameters' logic into its own class. This way you'll keep your controllers dry and they will be easier to test.
 
 Before
 ------
