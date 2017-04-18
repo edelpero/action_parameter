@@ -62,14 +62,14 @@ Run the bundle command to install it.
 Usage
 -----
 
-####Generator
+#### Generator
 
 ```ruby
 rails generate parameters [MODEL_NAME]
 ```
 Will create **app/parameters/[model_name]_parameters.rb**.
 
-####Controller Helpers
+#### Controller Helpers
 
 - **permitted_params:** Returns an ActionParameter instance.
 
@@ -77,12 +77,12 @@ Will create **app/parameters/[model_name]_parameters.rb**.
 permitted_params(options={})
 ```
 
-#####Options Hash
+##### Options Hash
 
  * **options**         - Hash with one valid key: **:class**.
  * **options[:class]** - Symbol value with the name of the Parameters class you want to use.
 
-#####Example 1
+##### Example 1
 
 ```ruby
 # app/controllers/people_controllers.rb
@@ -102,7 +102,7 @@ class PersonParameters < ActionParameter::Base
 end
 ```
 
-#####Example 2
+##### Example 2
 
 ```ruby
 # app/controllers/people_controllers.rb
@@ -122,15 +122,15 @@ class UserParameters < ActionParameter::Base
 end
 ```
 
-####Parameter Class Helpers
+#### Parameter Class Helpers
 
-#####Default Helpers
+##### Default Helpers
 
 - **params:**          Returns params from the current controller request which instantiated the Parameter class.
 - **controller_name:** Returns the controller's name from which the Parameter class was instantiated.
 - **action_name:**     Returns the action's name from the controller from which the Parameter class was instantiated.
 
-#####Creating New Helpers
+##### Creating New Helpers
 
 If you want to create new helper methods for your parameters class, just call **locals** method over **permitted_params**. Let say you want to make **@current_user** available for the UserParameter's class under the **user** method, then you'll need to use the **locals** method to tell the UserParameters class to create a new helper that returns **@current_user**.
 
@@ -140,7 +140,7 @@ permitted_params(class: :user).locals( user:           @current_user,
 ```
 This will create **user** and **another_helper** methods and they will be available in UserParameters class.
 
-#####Example
+##### Example
 
 ```ruby
 # app/controllers/users_controllers.rb
